@@ -18,7 +18,7 @@ import { Routes } from '@angular/router';
 
 import { RouterTestingModule } from '@angular/router/testing';
 
-let json = require('../../assets/album.json');
+const json = require('../../assets/album.json');
 
 let productDescriptionComponentExists = false;
 let ProductDescriptionComponent;
@@ -39,7 +39,7 @@ try {
 }
 
 class AProductService {
-  
+
 }
 
 describe('ProductDescription', () => {
@@ -48,7 +48,7 @@ describe('ProductDescription', () => {
   let ProvidedService;
   let mock_backend;
 
-  if(productServiceExists) {
+  if (productServiceExists) {
     ProvidedService = ProductService
   } else {
     ProvidedService = AProductService;
@@ -75,13 +75,13 @@ describe('ProductDescription', () => {
     product_service = providedService;
     mock_backend = mockBackend;
   }));
-  
+
   it(`should use release date data from the albumInfo property in the HTML template @product-description-html-uses-dynamic-albuminfo-releasedate`, async(() => {
     since('The ProductService hasn\'t been created yet.').expect(productServiceExists).toBe(true);
     expect(productDescriptionComponentExists).toBe(true);
 
     mock_backend.connections.subscribe((connection: MockConnection) => {
-      let options = new ResponseOptions({
+      const options = new ResponseOptions({
         body: json
       });
       connection.mockRespond(new Response(options));
@@ -92,12 +92,12 @@ describe('ProductDescription', () => {
 
     since('The release date in the ProductDescriptionComponent\'s HTML does not match the album name from the JSON response.').expect(ProductDescriptionFixture.debugElement.nativeElement.querySelector('.album-release-date').innerText).toEqual(json.album.releaseDate);
 
-    let htmlString = ""
+    let htmlString = ''
     try {
       htmlString = require('../../app/product-description/product-description.component.html');
     } catch (e) {
     }
-    if (htmlString != "") {
+    if (htmlString != '') {
       const parser = new DOMParser();
       const htmlDoc = parser.parseFromString(htmlString, 'text/xml');
       const re = /{{\s*albumInfo\?\.album\.releaseDate\s*}}/

@@ -12,7 +12,7 @@ import { Routes } from '@angular/router';
 
 import { RouterTestingModule } from '@angular/router/testing';
 
-let json = require('../../assets/products.json');
+const json = require('../../assets/products.json');
 
 let html;
 try {
@@ -37,11 +37,11 @@ try {
   productServiceExists = false;
 }
 
-let findComments = function(el) {
-    var arr = [];
-    for(var i = 0; i < el.childNodes.length; i++) {
-        var node = el.childNodes[i];
-        if(node.nodeType === 8) {
+const findComments = function(el) {
+    const arr = [];
+    for (let i = 0; i < el.childNodes.length; i++) {
+        const node = el.childNodes[i];
+        if (node.nodeType === 8) {
             arr.push(node);
         } else {
             arr.push.apply(arr, findComments(node));
@@ -82,7 +82,7 @@ describe('ProductList', () => {
     since('The ProductListComponent doesn\'t exist - have you run the `ng` command to generate it yet?').expect(productListComponentExists).toBe(true);
 
     mock_backend.connections.subscribe((connection: MockConnection) => {
-      let options = new ResponseOptions({
+      const options = new ResponseOptions({
         body: json
       });
       connection.mockRespond(new Response(options));
@@ -91,7 +91,7 @@ describe('ProductList', () => {
     const ProductListFixture = TestBed.createComponent(ProductListComponent);
     ProductListFixture.detectChanges();
 
-    let comments = findComments(ProductListFixture.nativeElement);
+    const comments = findComments(ProductListFixture.nativeElement);
 
     since('The ProductListComponent doesn\'t have an unordered list with multiple list items.  Have you tried adding the `ngFor` directive to the `li` tag in the template yet?').expect(ProductListFixture.nativeElement.querySelectorAll('li').length).toEqual(2);
     since('The ProductListComponent doesn\'t have an unordered list with multiple list items.  Have you tried adding the `ngFor` directive to the `li` tag in the template yet?').expect(comments.length).toEqual(1);

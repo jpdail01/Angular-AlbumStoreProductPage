@@ -12,7 +12,7 @@ import { Routes } from '@angular/router';
 
 import { RouterTestingModule } from '@angular/router/testing';
 
-let json = require('../../assets/album.json');
+const json = require('../../assets/album.json');
 
 let productTracklistingExists = false;
 let ProductTracklistingComponent;
@@ -63,7 +63,7 @@ describe('ProductTracklisting', () => {
     since('The ProductTracklistingComponent doesn\'t exist - have you run the `ng` command to generate it yet?').expect(productTracklistingExists).toBe(true);
 
     mock_backend.connections.subscribe((connection: MockConnection) => {
-      let options = new ResponseOptions({
+      const options = new ResponseOptions({
         body: json
       });
       connection.mockRespond(new Response(options));
@@ -73,7 +73,7 @@ describe('ProductTracklisting', () => {
     ProductTracklistingFixture.detectChanges();
 
     if (ProductTracklistingFixture.debugElement.nativeElement.querySelectorAll('.track-number').length > 1) {
-      let tracksHtml = ProductTracklistingFixture.debugElement.nativeElement.querySelectorAll('.track-number').forEach((element, index) => {
+      const tracksHtml = ProductTracklistingFixture.debugElement.nativeElement.querySelectorAll('.track-number').forEach((element, index) => {
         since('The track number in your HTML template doesn\'t match the track number in the JSON response.').expect(element.innerText).toEqual(json.album.tracks[index].trackNumber.toString());
       });
     } else {
@@ -85,7 +85,7 @@ describe('ProductTracklisting', () => {
     since('The ProductTracklistingComponent doesn\'t exist - have you run the `ng` command to generate it yet?').expect(productTracklistingExists).toBe(true);
 
     mock_backend.connections.subscribe((connection: MockConnection) => {
-      let options = new ResponseOptions({
+      const options = new ResponseOptions({
         body: json
       });
       connection.mockRespond(new Response(options));
@@ -95,7 +95,7 @@ describe('ProductTracklisting', () => {
     ProductTracklistingFixture.detectChanges();
 
     if (ProductTracklistingFixture.debugElement.nativeElement.querySelectorAll('.track-number').length > 1) {
-      let tracksHtml = ProductTracklistingFixture.debugElement.nativeElement.querySelectorAll('.track-name').forEach((element, index) => {
+      const tracksHtml = ProductTracklistingFixture.debugElement.nativeElement.querySelectorAll('.track-name').forEach((element, index) => {
         since('The track name in your HTML template doesn\'t match the track name in the JSON response.').expect(element.innerText).toEqual(json.album.tracks[index].trackName.toString());
       });
     } else {
@@ -107,7 +107,7 @@ describe('ProductTracklisting', () => {
     since('The ProductTracklistingComponent doesn\'t exist - have you run the `ng` command to generate it yet?').expect(productTracklistingExists).toBe(true);
 
     mock_backend.connections.subscribe((connection: MockConnection) => {
-      let options = new ResponseOptions({
+      const options = new ResponseOptions({
         body: json
       });
       connection.mockRespond(new Response(options));
@@ -117,7 +117,7 @@ describe('ProductTracklisting', () => {
     ProductTracklistingFixture.detectChanges();
 
     if (ProductTracklistingFixture.debugElement.nativeElement.querySelectorAll('.track-number').length > 1) {
-      let tracksHtml = ProductTracklistingFixture.debugElement.nativeElement.querySelectorAll('.track-time').forEach((element, index) => {
+      const tracksHtml = ProductTracklistingFixture.debugElement.nativeElement.querySelectorAll('.track-time').forEach((element, index) => {
         since('The track time in your HTML template doesn\'t match the track time in the JSON response.').expect(element.innerText).toEqual(json.album.tracks[index].trackLength.toString());
       });
     } else {
@@ -129,7 +129,7 @@ describe('ProductTracklisting', () => {
     since('The ProductTracklistingComponent doesn\'t exist - have you run the `ng` command to generate it yet?').expect(productTracklistingExists).toBe(true);
 
     mock_backend.connections.subscribe((connection: MockConnection) => {
-      let options = new ResponseOptions({
+      const options = new ResponseOptions({
         body: json
       });
       connection.mockRespond(new Response(options));
@@ -139,12 +139,12 @@ describe('ProductTracklisting', () => {
     ProductTracklistingFixture.detectChanges();
 
     if (ProductTracklistingFixture.debugElement.nativeElement.querySelectorAll('.track-number').length > 1) {
-      let tracksHtml = ProductTracklistingFixture.debugElement.nativeElement.querySelectorAll('.price-and-buy button').forEach((element, index) => {
+      const tracksHtml = ProductTracklistingFixture.debugElement.nativeElement.querySelectorAll('.price-and-buy button').forEach((element, index) => {
         since('The track price in your HTML template doesn\'t match the track price in the JSON response.').expect(element.innerText).toEqual(json.album.tracks[index].trackPrice.toString());
       });
     } else {
       since('The tracklisting data is not being populated by a JSON response yet.').expect(0).toBe(1);
     }
   }));
-  
+
 });

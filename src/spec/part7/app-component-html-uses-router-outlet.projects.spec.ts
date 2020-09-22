@@ -9,8 +9,8 @@ import { Routes } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 const appRoutes: Routes = [
-  { path: "products", component: null },
-  { path: "product/:id", component: null }
+  { path: 'products', component: null },
+  { path: 'product/:id', component: null }
 ];
 
 describe('AppComponent', () => {

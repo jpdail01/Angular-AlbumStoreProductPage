@@ -12,7 +12,7 @@ import { Routes } from '@angular/router';
 
 import { RouterTestingModule } from '@angular/router/testing';
 
-let json = require('../../assets/album.json');
+const json = require('../../assets/album.json');
 
 let html;
 try {
@@ -37,11 +37,11 @@ try {
   productServiceExists = false;
 }
 
-let findComments = function(el) {
-    var arr = [];
-    for(var i = 0; i < el.childNodes.length; i++) {
-        var node = el.childNodes[i];
-        if(node.nodeType === 8) {
+const findComments = function(el) {
+    const arr = [];
+    for (let i = 0; i < el.childNodes.length; i++) {
+        const node = el.childNodes[i];
+        if (node.nodeType === 8) {
             arr.push(node);
         } else {
             arr.push.apply(arr, findComments(node));
@@ -82,7 +82,7 @@ describe('ProductTracklisting', () => {
     since('The ProductTracklistingComponent doesn\'t exist - have you run the `ng` command to generate it yet?').expect(productTracklistingComponentExists).toBe(true);
 
     mock_backend.connections.subscribe((connection: MockConnection) => {
-      let options = new ResponseOptions({
+      const options = new ResponseOptions({
         body: json
       });
       connection.mockRespond(new Response(options));
@@ -91,12 +91,12 @@ describe('ProductTracklisting', () => {
     const ProductTracklistingFixture = TestBed.createComponent(ProductTracklistingComponent);
     ProductTracklistingFixture.detectChanges();
 
-    let comments = findComments(ProductTracklistingFixture.nativeElement);
+    const comments = findComments(ProductTracklistingFixture.nativeElement);
 
     since('The ProductTracklistingComponent doesn\'t have an unordered list with multiple list items.  Have you tried adding the `ngFor` directive to the `li` tag in the template yet?').expect(ProductTracklistingFixture.nativeElement.querySelectorAll('div.tracklisting ul li').length).toBeGreaterThan(1);
     since('The ProductTracklistingComponent doesn\'t have an unordered list with multiple list items.  Have you tried adding the `ngFor` directive to the `li` tag in the template yet?').expect(comments.length).toBeGreaterThan(0);
 
-    let containsBinding = 0;    
+    let containsBinding = 0;
     if (comments.length > 0) {
       comments.forEach(element => {
         if (element.nodeValue.match('ng-reflect-ng-for-of')) {

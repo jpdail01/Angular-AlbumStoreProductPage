@@ -18,7 +18,7 @@ import { Routes } from '@angular/router';
 
 import { RouterTestingModule } from '@angular/router/testing';
 
-let json = require('../../assets/album.json');
+const json = require('../../assets/album.json');
 
 let productDescriptionComponentExists = false;
 let ProductDescriptionComponent;
@@ -39,7 +39,7 @@ try {
 }
 
 class AProductService {
-  
+
 }
 
 describe('ProductDescription', () => {
@@ -48,7 +48,7 @@ describe('ProductDescription', () => {
   let ProvidedService;
   let mock_backend;
 
-  if(productServiceExists) {
+  if (productServiceExists) {
     ProvidedService = ProductService
   } else {
     ProvidedService = AProductService;
@@ -81,7 +81,7 @@ describe('ProductDescription', () => {
     expect(productDescriptionComponentExists).toBe(true);
 
     mock_backend.connections.subscribe((connection: MockConnection) => {
-      let options = new ResponseOptions({
+      const options = new ResponseOptions({
         body: json
       });
       connection.mockRespond(new Response(options));
@@ -92,12 +92,12 @@ describe('ProductDescription', () => {
 
     since('The album name in the ProductDescriptionComponent\'s HTML does not match the album name from the JSON response.').expect(ProductDescriptionFixture.debugElement.nativeElement.querySelector('.album-name').innerText).toEqual(json.album.name);
 
-    let htmlString = ""
+    let htmlString = ''
     try {
       htmlString = require('../../app/product-description/product-description.component.html');
     } catch (e) {
     }
-    if (htmlString != "") {
+    if (htmlString != '') {
       const parser = new DOMParser();
       const htmlDoc = parser.parseFromString(htmlString, 'text/xml');
       const re = /{{\s*albumInfo\?\.album\.name\s*}}/
@@ -105,7 +105,7 @@ describe('ProductDescription', () => {
     } else {
       since('We\'d like you to query the albumInfo property directly for the album name, and we\'re not seeing that you\'re doing that.').expect(0).toBe(1);
     }
-    
+
   }));
 
 });

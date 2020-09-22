@@ -27,7 +27,7 @@ describe('ProductService', () => {
   let mock_backend;
 
   beforeEach(async(() => {
-  
+
     TestBed.configureTestingModule({
       imports: [AppModule, RouterTestingModule.withRoutes([])],
       providers: [ProductService, MockBackend, BaseRequestOptions,
@@ -51,15 +51,15 @@ describe('ProductService', () => {
     mock_backend.connections.subscribe((connection: MockConnection) => {
       since('It looks like the `getProducts` method is not requesting the contents of the `products.json` file.').expect(connection.request.url).toEqual('../assets/products.json');
       since('It looks like the `getProducts` method is not sending a `GET` request.').expect(connection.request.method).toEqual(0);
-      let options = new ResponseOptions({});
+      const options = new ResponseOptions({});
       connection.mockRespond(new Response(options));
     });
-    if(product_service.getProducts == undefined) {
+    if (product_service.getProducts == undefined) {
       since('The ProductService doesn\'t have a method named `getProducts` yet.').expect(0).toBe(1);
-    } else if(product_service.getProducts != undefined && product_service.getAlbum.subscribe == undefined) {
-      let ps = product_service.getProducts(null);
+    } else if (product_service.getProducts != undefined && product_service.getAlbum.subscribe == undefined) {
+      const ps = product_service.getProducts(null);
       since('It doesn\'t look like you\'re returning the result of calling `this._http.get()` and passing `this._productsUrl` as a parameter.').expect(product_service._http._backend.connectionsArray.length).toBeGreaterThan(0);
-      since('It doesn\'t look like you\'re returning the result of calling `this._http.get()` and passing `this._productsUrl` as a parameter.').expect(product_service._http._backend.connectionsArray[0].request.url).toBe('../assets/products.json');        
+      since('It doesn\'t look like you\'re returning the result of calling `this._http.get()` and passing `this._productsUrl` as a parameter.').expect(product_service._http._backend.connectionsArray[0].request.url).toBe('../assets/products.json');
     } else {
     }
   }));

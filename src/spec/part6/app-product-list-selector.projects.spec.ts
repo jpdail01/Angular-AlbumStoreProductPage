@@ -47,10 +47,10 @@ describe('AppComponent', () => {
     });
 
 
-    if(!routerOutletFound) {
-      if(productPageFound == 1 && productListFound == 0) {
+    if (!routerOutletFound) {
+      if (productPageFound == 1 && productListFound == 0) {
         since('The `app-product-list` tag hasn\'t replaced the `app-product-page` tag yet.').expect(productListFound).toBe(1);
-      } else if(productPageFound == 0 && productListFound == 1) {
+      } else if (productPageFound == 0 && productListFound == 1) {
         // test should pass
       }
     } else {

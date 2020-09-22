@@ -21,7 +21,7 @@ try {
   productServiceExists = false;
 }
 
-let json = require('../../assets/products.json');
+const json = require('../../assets/products.json');
 
 describe('ProductService', () => {
 
@@ -52,15 +52,15 @@ describe('ProductService', () => {
 
   it(`should map the result of get request to json with rxjs map function @product-service-getproducts-method-maps-response-to-json`, async(() => {
     mock_backend.connections.subscribe((connection: MockConnection) => {
-      let options = new ResponseOptions({
+      const options = new ResponseOptions({
         body: json
       });
       connection.mockRespond(new Response(options));
     });
     debugger
-    if(product_service.getProducts == undefined) {
+    if (product_service.getProducts == undefined) {
       since('The ProductService doesn\'t have a method named `getProducts()` yet.').expect(0).toBe(1);
-    } else if(product_service.getProducts != undefined && product_service.getProducts() == undefined) {
+    } else if (product_service.getProducts != undefined && product_service.getProducts() == undefined) {
       since('The `getProducts()` method exists, but it\'s not returning the result of a call to `this._http.get()` and passing `this._productsUrl` as a parameter.').expect(0).toBe(1);
     } else {
       product_service.getProducts().subscribe((response) => {

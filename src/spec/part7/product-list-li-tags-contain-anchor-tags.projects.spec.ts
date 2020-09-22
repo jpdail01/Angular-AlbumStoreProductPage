@@ -12,7 +12,7 @@ import { Routes } from '@angular/router';
 
 import { RouterTestingModule } from '@angular/router/testing';
 
-let json = require('../../assets/products.json');
+const json = require('../../assets/products.json');
 
 let productListComponentExists = false;
 let ProductListComponent;
@@ -63,7 +63,7 @@ describe('ProductListComponent', () => {
     since('The ProductListComponent doesn\'t exist - have you run the `ng` command to generate it yet?').expect(productListComponentExists).toBe(true);
 
     mock_backend.connections.subscribe((connection: MockConnection) => {
-      let options = new ResponseOptions({
+      const options = new ResponseOptions({
         body: json
       });
       connection.mockRespond(new Response(options));
